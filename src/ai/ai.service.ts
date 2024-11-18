@@ -4,14 +4,16 @@ import OpenAI from 'openai';
 
 @Injectable()
 export class AiService {
-  async recommend(createAiDto: CreateAiDto) {
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      defaultHeaders: {
-        'OpenAI-Beta': 'assistants=v2'
-      }
-    });
-    const completion = await openai.chat.completions.create({
+  
+  private openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    defaultHeaders: {
+      'OpenAI-Beta': 'assistants=v2'
+    }
+  });
+
+  async recommendGames(createAiDto: CreateAiDto) {
+    const completion = await this.openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {

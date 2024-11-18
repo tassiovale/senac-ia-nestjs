@@ -8,6 +8,6 @@ export class AiController {
 
   @Post('games')
   async recommendGame(@Body() createAiDto: CreateAiDto) {
-    return await this.aiService.recommend(createAiDto);
+    return await this.aiService.recommendGames(createAiDto);
   }
 }
